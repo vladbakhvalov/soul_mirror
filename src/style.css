@@ -22,3 +22,40 @@ body {
 #app canvas {
   display: block;
 }
+
+#debug-video {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  width: 240px;
+  height: 180px;
+  object-fit: cover;
+  border: 1px solid #333;
+  border-radius: 6px;
+  transform: scaleX(-1); /* mirror, like a real mirror */
+  z-index: 10;
+  background: #000;
+  opacity: 0.85;
+}
+
+#status {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 13px;
+  color: #cfe;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#status.error {
+  color: #ff8888;
+  background: rgba(40, 0, 0, 0.7);
+}
+
+#status:empty {
+  display: none;
+}
