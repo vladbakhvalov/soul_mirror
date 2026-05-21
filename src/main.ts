@@ -20,6 +20,29 @@ status.id = 'status';
 status.textContent = 'Запрашиваем доступ к камере…';
 document.body.appendChild(status);
 
+// ---------- Fullscreen toggle ----------
+const fsBtn = document.createElement('button');
+fsBtn.id = 'fs-btn';
+fsBtn.type = 'button';
+fsBtn.title = 'Полный экран (F)';
+fsBtn.textContent = '⛶';
+fsBtn.addEventListener('click', toggleFullscreen);
+document.body.appendChild(fsBtn);
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen().catch(() => {});
+  }
+}
+document.addEventListener('fullscreenchange', () => {
+  fsBtn.textContent = document.fullscreenElement ? '🗗' : '⛶';
+});
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+});
+
 // ---------- Engine + scene ----------
 const engine = new Engine({ container });
 engine.camera.position.set(0, 0, 2.2);
